@@ -6,26 +6,26 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PhraseServiceTest {
+public class PhraseServiceImplTest {
 
     @Test()
     public void shouldReturnOnlyOnePhraseByDefault() {
-        PhraseService phraseService = new PhraseService();
+        PhraseServiceImpl phraseServiceImpl = new PhraseServiceImpl();
         HashSet<String> resultPhrases = new HashSet<>();
         for (int i = 0; i < 10; i++) {
-            resultPhrases.add(phraseService.getPhrase());
+            resultPhrases.add(phraseServiceImpl.getPhrase());
         }
         assertEquals(1, resultPhrases.size());
     }
 
     @Test
     public void shouldAddPhraseAndReturnNewAndDefaultPhrases() {
-        PhraseService phraseService = new PhraseService();
+        PhraseServiceImpl phraseServiceImpl = new PhraseServiceImpl();
         HashSet<String> resultPhrases = new HashSet<>();
         String newPhrase = "new phrase";
-        phraseService.addPhrase(newPhrase);
+        phraseServiceImpl.addPhrase(newPhrase);
         for (int i = 0; i < 10; i++) {
-            resultPhrases.add(phraseService.getPhrase());
+            resultPhrases.add(phraseServiceImpl.getPhrase());
         }
         assertEquals(2, resultPhrases.size());
         assertTrue(resultPhrases.contains(newPhrase));
