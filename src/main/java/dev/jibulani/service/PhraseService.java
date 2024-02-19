@@ -1,22 +1,13 @@
 package dev.jibulani.service;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import dev.jibulani.configuration.Logged;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class PhraseService {
+public interface PhraseService {
 
-    public final List<String> cheerUpPhrases = new CopyOnWriteArrayList<>() {{
-        add("У тебя все получится!");
-    }};
+    @Logged
+    String getPhrase();
 
-    public String getPhrase() {
-        return cheerUpPhrases.get(
-                ThreadLocalRandom.current().nextInt(cheerUpPhrases.size()) % cheerUpPhrases.size()
-        );
-    }
-
-    public void addPhrase(String phrase) {
-        cheerUpPhrases.add(phrase);
-    }
+    @Logged
+    void addPhrase(String phrase);
 }

@@ -5,12 +5,12 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>supportServlet</servlet-name>
-        <servlet-class>dev.jibulani.servlet.SupportServlet</servlet-class>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>dev.jibulani.servlet.DispatcherServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>supportServlet</servlet-name>
-        <url-pattern>/v1/support</url-pattern>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 </web-app>
