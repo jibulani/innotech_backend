@@ -1,16 +1,15 @@
 package dev.jibulani.controller;
 
-import dev.jibulani.configuration.Controller;
-import dev.jibulani.configuration.GetMapping;
-import dev.jibulani.configuration.PostMapping;
 import dev.jibulani.model.Phrase;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@Controller
 public interface SupportController {
 
     @GetMapping("/help-service/v1/support")
     Phrase getPhrase();
 
     @PostMapping("/help-service/v1/support")
-    void addPhrase(Phrase phrase);
+    void addPhrase(@RequestBody Phrase phrase);
 }

@@ -1,23 +1,28 @@
 package dev.jibulani.controller;
 
 import dev.jibulani.model.Phrase;
-import dev.jibulani.service.PhraseService;
+import dev.jibulani.repository.PhraseRepository;
+import dev.jibulani.message_broker.Publisher;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class SupportControllerImpl implements SupportController {
 
-    public PhraseService phraseService;
+    public final Publisher<Phrase> phraseService;
+    public final PhraseRepository phraseRepository;
 
-    public SupportControllerImpl(PhraseService phraseService) {
+    public SupportControllerImpl(Publisher<Phrase> phraseService, PhraseRepository phraseRepository) {
         this.phraseService = phraseService;
+        this.phraseRepository = phraseRepository;
     }
 
     @Override
     public Phrase getPhrase() {
-        return new Phrase(phraseService.getPhrase());
+        return phraseRepository.getPhrase();
     }
 
     @Override
     public void addPhrase(Phrase phrase) {
-        phraseService.addPhrase(phrase.phraseText());
+        phraseService.publish(phrase);
     }
 }

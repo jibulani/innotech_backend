@@ -1,20 +1,22 @@
 package dev.jibulani.configuration;
 
-import dev.jibulani.controller.SupportController;
-import dev.jibulani.controller.SupportControllerImpl;
-import dev.jibulani.service.PhraseService;
-import dev.jibulani.service.PhraseServiceImpl;
+import dev.jibulani.message_broker.MessageBroker;
+import dev.jibulani.message_broker.Publisher;
+import dev.jibulani.message_broker.PublisherImpl;
+import dev.jibulani.model.Phrase;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
 
-    @Instance
-    public PhraseService phraseService() {
-        return new PhraseServiceImpl();
+    @Bean
+    public MessageBroker<Phrase> messageBroker() {
+        return new MessageBroker<>();
     }
 
-    @Instance
-    public SupportController supportController(PhraseService phraseService) {
-        return new SupportControllerImpl(phraseService);
+    @Bean
+    public Publisher<Phrase> publisher(MessageBroker<Phrase> messageBroker) {
+        return new PublisherImpl<>(messageBroker);
     }
 }
