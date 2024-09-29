@@ -1,6 +1,5 @@
 package dev.jibulani.message_broker;
 
-
 public class PublisherImpl<T> implements Publisher<T> {
     private final MessageBroker<T> messageBroker;
 
